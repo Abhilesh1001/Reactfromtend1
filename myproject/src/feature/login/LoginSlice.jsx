@@ -5,6 +5,7 @@ const initialState = {
   password : "",
   password2:"",
   tc:"off", 
+  user : '',
 }
 
 export const LoginSlice = createSlice({
@@ -23,10 +24,13 @@ export const LoginSlice = createSlice({
     changeCheckbox: (state, action) => {
       state.tc = action.payload
     },
+    changeUser: (state, action) => {
+      state.user = action.payload
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { changeEmail,changePassword,changePassword2,changeCheckbox } = LoginSlice.actions
+export const { changeEmail,changePassword,changePassword2,changeCheckbox,changeUser } = LoginSlice.actions
 
 export default LoginSlice.reducer

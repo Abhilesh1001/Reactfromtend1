@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css'
 import { Button} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import Modal from '../modal/Modal';
-
+import {changeCart,changeLen,changeTotalSum} from '../../feature/cart/CartSlicer'
+import {useDispatch,useSelector} from 'react-redux'
+import {changeUser} from '../../feature/login/LoginSlice'
+import {
+  Link
+} from "react-router-dom"
+const cart = localStorage.getItem('cart')
+const len = localStorage.getItem('len')
+const TotalSum = localStorage.getItem('totalSum')
+const UserName = localStorage.getItem('UserName')
 
 const Header = () => {
+  const dispatch = useDispatch()
+
+  useState(()=>{
+    dispatch(changeCart(cart))    
+    dispatch(changeLen(len))    
+    dispatch(changeTotalSum(TotalSum))    
+    dispatch(changeUser(UserName))
+  },[])
+
+
   return (
-    <div >
+    <div className='headerarea'>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a className="navbar-brand" href="/shop">My Awesome Cart</a>
+        <Link className="navbar-brand" to={"/"}>My Awesome Cart</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -17,19 +36,19 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="/shop">Home <span className="sr-only">(current)</span></a>
+              <Link className="nav-link" to={"/"}>Home</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/shop/about">About Us</a>
+              <Link className="nav-link" to={"/shop/about"}>About Us</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/shop/tracker">Tracker</a>
+              <Link className="nav-link" to={"/shop/tracker"}>Tracker</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/blog">Blog</a>
+              <Link className="nav-link" to={"/blog"}>Blog</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/shop/contact">Contact Us</a>
+              <Link className="nav-link" to={"/shop/contact"}>Contact Us</Link>
             </li>
             <li className="nav-item active">
               <a className="nav-link" href="#"> </a>

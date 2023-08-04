@@ -1,24 +1,54 @@
-import React from 'react'
-import {Button} from '@mui/material'
-import {useSelector,useDispatch} from 'react-redux'
-import {changePassword,changeEmail,changeCheckbox,changePassword2} from './LoginSlice'
+import React, { useEffect, useState } from 'react'
+import { Button } from '@mui/material'
+import { useSelector, useDispatch } from 'react-redux'
+import { changePassword, changeEmail, changeUser } from './LoginSlice'
+import axios from 'axios'
 
 const Login = () => {
-    const email = useSelector((state)=>state.login.email)
-    const password = useSelector((state)=>state.login.password)
-    const password2 = useSelector((state)=>state.login.password2)
+    const email = useSelector((state) => state.login.email)
+    const password = useSelector((state) => state.login.password)
+    const user = useSelector((state) => state.login.user)
     const dispatch = useDispatch()
-    const handleSubmit =(e)=>{
+    // const [user,setUser] = useState('')
+    const handleSubmit = async (e) => {
         e.preventDefault()
         let data = {
-            email : email,
-            password : password,
-            password2 : password2
+            email: email,
+            password: password,
         }
-        console.log(data)
-        console.log('ok')
+        try {
+            let response = await axios.post('http://127.0.0.1:8000/cus/authlogin/', data)
+            let res = response.data
+            console.log(res.token.access)
+            localStorage.setItem('token', res.token.access)
+        } catch (errors) {
+            console.log(errors)
+        }
+        Profile()
     }
+    useEffect(() => {
+        let token = localStorage.getItem('token')
+        if (token !==null) {
+            Profile()
+        }
+    }, [])
+    const Profile = async () => {
+        let token = localStorage.getItem('token')
+        try{
 
+            let response = await axios.get('http://127.0.0.1:8000/cus/authuserpro', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            let res = response.data
+            // console.log('user', res.name)
+            dispatch(changeUser(res.name))
+            localStorage.setItem('UserName',res.name)
+        }catch(error){
+            console.log(error)
+        }
+    }
     return (
         <div>
             {/* Login modal<!-- Button trigger modal --> */}
@@ -34,22 +64,19 @@ const Login = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form action="" onSubmit={handleSubmit}>
-                        <div className="modal-body">
-                            <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" onChange={(e)=>dispatch(changeEmail(e.target.value))}  className="form-control" />
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <input type="password"  onChange={(e)=>dispatch(changePassword(e.target.value))} className="form-control" />
-                            <label htmlFor="password2" className="form-label">Confirm Password</label>
-                            <input type="password"  onChange={(e)=>dispatch(changePassword(e.target.value))} className="form-control" />
-                        <div className="modal-footer">
-                            <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
-                        </div>
-                        </div>
+                            <div className="modal-body">
+                                <label htmlFor="email" className="form-label">Email</label>
+                                <input type="email" onChange={(e) => dispatch(changeEmail(e.target.value))} className="form-control" />
+                                <label htmlFor="password" className="form-label">Password</label>
+                                <input type="password" onChange={(e) => dispatch(changePassword(e.target.value))} className="form-control" />
+                                <div className="modal-footer">
+                                    <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

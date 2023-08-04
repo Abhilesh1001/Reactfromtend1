@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {changeName,changeEmail,changePassword,changePassword2,changeCheckbox} from './SignUpSlice'
 import { Button } from '@mui/material'
 import axios from 'axios'
+import {useNavigate} from 'react-router'
 
 
 const Signup = () => {
@@ -13,6 +14,8 @@ const Signup = () => {
   const password2 = useSelector((state)=>state.sign.password2)
   const tc= useSelector((state)=>state.sign.tc)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [error,setError] = useState('')
 
   const submitform = async (e)=>{
     e.preventDefault();
@@ -25,9 +28,15 @@ const Signup = () => {
         tc : tc,
     }
     console.log(data1)
-    const response = await axios.post('http://127.0.0.1:8000/cus/authreg/', data1)
-    const data2 = response.data
-    console.log('data2',data2)
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/cus/authreg/', data1)  
+      const data2 = response.data
+    }catch (errors){
+      console.log(errors.response.data.errors)
+      setError(errors.response.data.errors)
+    }
+    navigate('/')
+
 }
 
   return (
@@ -50,6 +59,7 @@ const Signup = () => {
 
         <label htmlFor='email' className="form-label">Email Id</label>
         <input type="email" onChange={(e)=>dispatch(changeEmail(e.target.value))} className='form-control'/>
+        {error.email}
 
         <label htmlFor='name' className="form-label">Name</label>
         <input type="text" onChange={(e)=>dispatch(changeName(e.target.value))} className='form-control'/>
@@ -62,6 +72,7 @@ const Signup = () => {
         <label htmlFor="auth">Sure you want to SignUp</label>
       <div className="modal-footer">
         <button type="submit" onClick={submitform} className="btn btn-primary">Sign Up</button>
+        
       </div>
       </div>
       </form>

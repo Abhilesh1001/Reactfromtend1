@@ -1,0 +1,15 @@
+.container {
+    padding: 20px;
+  }
+  
+  .category-carousel-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .category-carousel {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  

@@ -5,7 +5,9 @@ const initialState = {
   name:"",
   password : "",
   password2:"",
-  tc:"off",  
+  tc:"off", 
+  phone:0,
+  desc:'',
 }
 
 export const SignUpSlice = createSlice({
@@ -13,10 +15,6 @@ export const SignUpSlice = createSlice({
   initialState,
   reducers: {
     changeEmail: (state,action) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
       state.email = action.payload 
     },
     changeName: (state,action) => {
@@ -31,10 +29,16 @@ export const SignUpSlice = createSlice({
     changeCheckbox: (state, action) => {
       state.tc = action.payload
     },
+    changePhone: (state, action) => {
+      state.phone = action.payload
+    },
+    changeDescription: (state, action) => {
+      state.desc = action.payload
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { changeEmail, changeName, changePassword,changePassword2,changeCheckbox } = SignUpSlice.actions
+export const { changeEmail, changeName, changePassword,changePassword2,changeCheckbox,changePhone,changeDescription } = SignUpSlice.actions
 
 export default SignUpSlice.reducer
