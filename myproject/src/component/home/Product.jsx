@@ -8,9 +8,9 @@ import Addtocart from '../addtocart/Addtocart'
 
 
 const Product = ({id,image,name, price, date,category,desc}) => {
+      
       const dispatch = useDispatch()     
       const handleQuickView=(e)=>{
-      console.log('ok')
       console.log(e.target.id)
       dispatch(changeProductID(e.target.id))
       dispatch(changeName(name))
@@ -20,8 +20,8 @@ const Product = ({id,image,name, price, date,category,desc}) => {
 
 
   return (
-    <div className='my-4'>
-        <div className="card" style={{width:'18rem'}}>
+  <div className='my-4'>
+  <div className="card" style={{width:'18rem'}}>
   <img src={image} className="card-img-top" alt="..."/>
   <div className="card-body">
     <p className="card-text">Product Name : <b>{name}</b></p>

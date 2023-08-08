@@ -13,24 +13,43 @@ const Signup = () => {
   const password = useSelector((state)=>state.sign.password)
   const password2 = useSelector((state)=>state.sign.password2)
   const tc= useSelector((state)=>state.sign.tc)
+  const [inputvalue,setInputval] = useState('')
+  const [inputemail,setInputEmail] = useState('')
+  const [inputpassword,setInputpasswordl] = useState('')
+  const [inputpassword2,setInputpassword2l] = useState('')
+  const [inputtc,setInputtc] = useState("off")
+  const [successdata,setSuccessData] = useState('')
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [error,setError] = useState('')
 
   const submitform = async (e)=>{
     e.preventDefault();
+    dispatch(changeName(inputvalue))
+    dispatch(changeEmail(inputemail))
+    dispatch(changePassword(inputpassword))
+    dispatch(changePassword2(inputpassword2))
+    dispatch(changeCheckbox(inputtc))
     console.log(name)
     let data1 = {
-        name : name,
-        email : email,
-        password : password,
-        password2 : password2,
-        tc : tc,
+        name : inputvalue,
+        email : inputemail,
+        password : inputpassword,
+        password2 : inputpassword2,
+        tc : inputtc,
     }
     console.log(data1)
     try {
       const response = await axios.post('http://127.0.0.1:8000/cus/authreg/', data1)  
-      const data2 = response.data
+      const data2 = response.data.msg
+      console.log(data2)
+      setInputval('')
+      setInputEmail('')
+      setInputpasswordl('')
+      setInputpassword2l('')
+      setInputtc("off")
+      setSuccessData(data2)
     }catch (errors){
       console.log(errors.response.data.errors)
       setError(errors.response.data.errors)
@@ -58,21 +77,22 @@ const Signup = () => {
       <div className="modal-body">
 
         <label htmlFor='email' className="form-label">Email Id</label>
-        <input type="email" onChange={(e)=>dispatch(changeEmail(e.target.value))} className='form-control'/>
+        <input type="email"  value={inputemail} onChange={(e)=>setInputEmail(e.target.value)} className='form-control'/>
         {error.email}
 
         <label htmlFor='name' className="form-label">Name</label>
-        <input type="text" onChange={(e)=>dispatch(changeName(e.target.value))} className='form-control'/>
+        <input type="text" value={inputvalue} onChange={(e)=>setInputval(e.target.value)} className='form-control'/>
 
         <label htmlFor='password' className="form-label">Password</label>
-        <input type="password" onChange={(e)=>dispatch(changePassword(e.target.value))} className='form-control'/>
+        <input type="password" value={inputpassword} onChange={(e)=>setInputpasswordl(e.target.value)} className='form-control'/>
         <label htmlFor='password2' className="form-label">Confirm Password</label>
-        <input type="password" onChange={(e)=>dispatch(changePassword2(e.target.value))} className='form-control'/>
-        <input onChange={(e)=>dispatch(changeCheckbox(e.target.value))} type="checkbox"/>
+        <input type="password" value={inputpassword2} onChange={(e)=>setInputpassword2l(e.target.value)} className='form-control'/>
+        <input value={inputtc} onChange={(e)=>setInputtc(e.target.checked)} type="checkbox"/>
         <label htmlFor="auth">Sure you want to SignUp</label>
+        {successdata!=='' && <div><b>{successdata} Please login by providing your Email Id and password</b> </div>}
       <div className="modal-footer">
         <button type="submit" onClick={submitform} className="btn btn-primary">Sign Up</button>
-        
+
       </div>
       </div>
       </form>

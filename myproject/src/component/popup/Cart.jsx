@@ -20,14 +20,14 @@ const Cart = () => {
   useEffect(()=>{
 
   },[])
-  //  console.log('insidecartloop',Object.keys(cartItem))
+
+
   return (
     <div>
       {len>0 && (
   <div>
       {
         Object.keys(cartItem).map((items,index)=>{
-          // console.log(cartItem,'elem')
           return (
             <div key={items}>
               <b>{index + 1} </b><span id='popover'> Name: {cartItem[items][1]}  Qty :{cartItem[items][0]}  Price : {cartItem[items][2]}</span>
@@ -38,9 +38,6 @@ const Cart = () => {
     <Link  to={"/shop/checkout"} className='btn btn-primary mx-2'>
       Checkout
     </Link>
-    <a type='button' className='btn btn-primary'>
-      Clear Cart
-    </a>
   </div>
 )}
     </div>

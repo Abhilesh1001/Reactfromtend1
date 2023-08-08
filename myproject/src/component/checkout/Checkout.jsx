@@ -5,6 +5,7 @@ import { changeCart, changeLen,changeTotalSum } from '../../feature/cart/CartSli
 import { changeUser } from '../../feature/login/LoginSlice'
 import axios from 'axios'
 import ReviewCart from './ReviewCart'
+const id = localStorage.getItem('UserId')
 
 const Checkout = () => {
     const [name, setName] = useState('')
@@ -19,34 +20,13 @@ const Checkout = () => {
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
-    useEffect(() => {
-        let token = localStorage.getItem('token')
-        if (token !== "null") {
-            Profile()
-        }
-    }, [])
-    const Profile = async () => {
-        let token = localStorage.getItem('token')
-        
-        try{
-            let response = await axios.get('http://127.0.0.1:8000/cus/authuserpro', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            let res = response.data
-            dispatch(changeUser(res.name))
-        }catch(error){
-            // console.log(error)
-        }
-        // console.log('user', res.name)
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         // console.log('ok')
         let data = {
             items_json: cart,
+            user : id,
             name: name,
             email: email,
             address1: address,

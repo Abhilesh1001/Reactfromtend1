@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import { changePassword, changeEmail, changeUser } from './LoginSlice'
+import { changeLen, changeCart, changeTotalSum } from '../../feature/cart/CartSlicer'
 import axios from 'axios'
 
 const Login = () => {
@@ -9,7 +10,6 @@ const Login = () => {
     const password = useSelector((state) => state.login.password)
     const user = useSelector((state) => state.login.user)
     const dispatch = useDispatch()
-    // const [user,setUser] = useState('')
     const handleSubmit = async (e) => {
         e.preventDefault()
         let data = {
@@ -19,22 +19,49 @@ const Login = () => {
         try {
             let response = await axios.post('http://127.0.0.1:8000/cus/authlogin/', data)
             let res = response.data
-            console.log(res.token.access)
             localStorage.setItem('token', res.token.access)
         } catch (errors) {
             console.log(errors)
         }
         Profile()
+        let token = localStorage.getItem('token')
+        console.log(token, email)
+        try {
+            let response = await axios.get(`http://127.0.0.1:8000/newshop/cartGet/${email}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log('getitem', response.data)
+            localStorage.setItem('cart', response.data.item_json)
+            dispatch(changeCart(response.data.item_json))
+            let cart = JSON.parse(response.data.item_json)
+            let sum = 0
+            let totalSum = 0
+            for (let item in cart) {
+                sum += cart[item][0]
+                totalSum += cart[item][0] * cart[item][2]
+            }
+            dispatch(changeLen(sum))
+            localStorage.setItem('len',sum)
+            localStorage.setItem('totalSum',totalSum)
+            dispatch(changeTotalSum(totalSum))
+        } catch (errors) {
+            console.log('loginError', errors)
+        }
+
+
+
     }
     useEffect(() => {
         let token = localStorage.getItem('token')
-        if (token !==null) {
+        if (token !== null) {
             Profile()
         }
     }, [])
     const Profile = async () => {
         let token = localStorage.getItem('token')
-        try{
+        try {
 
             let response = await axios.get('http://127.0.0.1:8000/cus/authuserpro', {
                 headers: {
@@ -42,10 +69,12 @@ const Login = () => {
                 }
             })
             let res = response.data
-            // console.log('user', res.name)
+            console.log(res)
             dispatch(changeUser(res.name))
-            localStorage.setItem('UserName',res.name)
-        }catch(error){
+            localStorage.setItem('UserName', res.name)
+            localStorage.setItem('UserId', res.id)
+            localStorage.setItem('email', res.email)
+        } catch (error) {
             console.log(error)
         }
     }

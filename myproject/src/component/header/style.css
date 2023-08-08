@@ -5,3 +5,10 @@
     width: 200px;
     align-items: center;
 }
+
+@media screen and (max-width: 767px) {
+    .flexitem {
+        width: 100%; /* Change the width to 100% to make it occupy the full width of the small screen */
+        /* Add any other specific styles you want for small screens here */
+    }
+}
