@@ -16,6 +16,7 @@ const Checkout = () => {
     const [state, setState] = useState('')
     const [zip, setZip] = useState('')
     const [phoneno, setPhoneno] = useState('')
+    const [eror,setError] =useState(false)
     const cart = useSelector((state)=>state.len.cart)
     const navigate = useNavigate()
 
@@ -54,8 +55,11 @@ const Checkout = () => {
 
         } catch (error) {
             console.log('error', error)
-        }
 
+            alert('Please login for purchse the item in your cart')
+    
+        }
+        
         // console.log(data)
     }
     return (
