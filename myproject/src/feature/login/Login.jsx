@@ -89,7 +89,7 @@ const Login = () => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="login">Sign Up</h5>
+                            <h5 className="modal-title" id="login">Login</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form action="" onSubmit={handleSubmit}>
