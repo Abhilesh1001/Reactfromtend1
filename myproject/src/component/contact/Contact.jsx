@@ -3,7 +3,6 @@ import {useDispatch,useSelector} from 'react-redux'
 import { changeName,changeEmail,changePhone,changeDescription} from '../../feature/signup/SignUpSlice'
 import axios from 'axios'
 
-
 const Contact = () => {
     const name = useSelector((state)=>state.sign.name)
     const email = useSelector((state)=>state.sign.email)
@@ -41,7 +40,7 @@ const Contact = () => {
     <div>
       <div className="container">
     <h1>Contact Us</h1>
-    <form  onSubmit={handleSubmit} > 
+    <form  onSubmit={handleSubmit} >  
 
     <div className="mb-3">
         <label htmlFor="name" className="form-label">Enter Your Name</label>
