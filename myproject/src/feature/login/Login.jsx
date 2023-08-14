@@ -4,12 +4,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changePassword, changeEmail, changeUser } from './LoginSlice'
 import { changeLen, changeCart, changeTotalSum } from '../../feature/cart/CartSlicer'
 import axios from 'axios'
+import {useNavigate} from 'react-router'
 
 const Login = () => {
     const email = useSelector((state) => state.login.email)
     const password = useSelector((state) => state.login.password)
     const user = useSelector((state) => state.login.user)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         let data = {
@@ -78,6 +81,10 @@ const Login = () => {
             console.log(error)
         }
     }
+    const handleforgetpassword =()=>{
+        navigate('/auth/resetnewpassword')
+    }
+    
     return (
         <div>
             {/* Login modal<!-- Button trigger modal --> */}
@@ -99,7 +106,7 @@ const Login = () => {
                                 <label htmlFor="password" className="form-label">Password</label>
                                 <input type="password" onChange={(e) => dispatch(changePassword(e.target.value))} className="form-control" />
                                 <div className="modal-footer">
-                                    <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                                    <span><button className='mx-5' onClick={handleforgetpassword} >Forget Password</button><button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button></span>
                                 </div>
                             </div>
                         </form>
