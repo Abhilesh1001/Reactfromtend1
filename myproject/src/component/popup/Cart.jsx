@@ -15,10 +15,13 @@ const Cart = () => {
     if (cart && typeof cart === 'string') {
       setCartItem(JSON.parse(cart));
     }
+    
+        
   }, [cart]);
   console.log(cartItem)
   useEffect(()=>{
-
+ 
+        
   },[])
 
 
@@ -28,7 +31,7 @@ const Cart = () => {
   <div>
       {
         Object.keys(cartItem).map((items,index)=>{
-          {cartItem[items][1]}
+          // {cartItem[items][1]}
           return (
             <div key={items}>
               <b>{index + 1} </b><span id='popover'> Name: {cartItem[items][1]}  Qty :{cartItem[items][0]}  Price : {cartItem[items][2]}</span>
