@@ -78,7 +78,8 @@ const Login = () => {
             localStorage.setItem('UserId', res.id)
             localStorage.setItem('email', res.email)
         } catch (error) {
-            console.log(error)
+            // console.log(error)
+            localStorage.removeItem('UserName')
         }
     }
     const handleforgetpassword =()=>{
