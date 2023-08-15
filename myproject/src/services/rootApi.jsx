@@ -21,6 +21,14 @@ export const rootApi = createApi({
             method : 'GET'
           }
         }
+      }),
+      getAllprodutview : builder.query({
+        query : ()=>{
+          return {
+            url : 'newshop/prod/',
+            method : 'GET'
+          }
+        }
       })
 
   }),
@@ -28,4 +36,4 @@ export const rootApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const {useGetSingleProdQuery,useGetProdViewQuery } = rootApi
+export const {useGetSingleProdQuery,useGetProdViewQuery,useGetAllprodutviewQuery } = rootApi

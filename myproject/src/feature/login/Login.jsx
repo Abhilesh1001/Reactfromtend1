@@ -12,6 +12,7 @@ const Login = () => {
     const user = useSelector((state) => state.login.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [loginpage,setLoginpage] = useState(true)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -81,13 +82,17 @@ const Login = () => {
             console.log(error)
         }
     }
-    const handleforgetpassword =()=>{
+    const handleforgetpassword =(e)=>{
+        e.preventDefault()
+        setLoginpage(false)
         navigate('/auth/resetnewpassword')
+        window.location.reload();
     }
     
     return (
-        <div>
-            {/* Login modal<!-- Button trigger modal --> */}
+        <>
+           {
+            loginpage && <div> {/* Login modal<!-- Button trigger modal --> */}
             <Button type="button" color='primary' className="btn btn-primary mx-2" variant="contained" data-bs-toggle="modal" data-bs-target="#login">
                 Login
             </Button>
@@ -112,8 +117,9 @@ const Login = () => {
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div></div>
+           }
+        </>
     )
 }
 

@@ -53,12 +53,14 @@ const Aboutus = () => {
     
   },[postData])
   
+  console.log(finalData)
 
   return (
     <div>
 
       <Excel finaldata={finalData} />
       This page is realeted to About us
+      <button className='btn btn-success'><a href="http://127.0.0.1:8000/newshop/excelimport/" className='text-danger'>Click here</a></button>
     </div>
   )
 }
