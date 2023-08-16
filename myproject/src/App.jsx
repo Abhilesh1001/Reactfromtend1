@@ -14,6 +14,7 @@ import ResetPassword from './excel/rest/ResetPassword'
 import ResetNewPassword from './excel/rest/ResetNewPassword'
 import ResetPasswordWithUidToken from './excel/rest/ResetPasswordWithUidToken'
 import ProductPage from './excel/downloadExcel/ProductPage'
+import PDFprod from './excel/downloadPDF/PDFprod'
 
 function App() {
   
@@ -34,6 +35,7 @@ function App() {
         <Route exact path="/auth/resetnewpassword" element={<ResetNewPassword />} />
         <Route exact path="/auth/resetpassworduidtoken/:id/:token" element={<ResetPasswordWithUidToken />} />
         <Route exact path="/shop/productpage" element={<ProductPage />} />
+        <Route exact path="/shop/productpdf" element={<PDFprod />} />
 
       </Routes>
       </BrowserRouter>

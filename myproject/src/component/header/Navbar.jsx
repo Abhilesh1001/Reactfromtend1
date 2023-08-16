@@ -57,6 +57,7 @@ const Navbar = () => {
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><Link className="dropdown-item" to={'/auth/resetpassword'}>Reset Password</Link></li>
             <li><Link className="dropdown-item" to={'/shop/productpage'}>Product Page</Link></li>
+            <li><Link className="dropdown-item" to={'/shop/productpdf'}>Product PDF</Link></li>
             <li><hr className="dropdown-divider" /></li>
             <li><a className="dropdown-item" href="#">Something else here</a></li>
           </ul>

@@ -1,7 +1,8 @@
 import React from 'react'
-import axios from 'axios'
 import { useGetAllprodutviewQuery } from '../../services/rootApi'
 import ExcelProdPage from './ExcelProdPage'
+
+
 
 const ProductPage = () => {
     const { data, isSuccess, isError } = useGetAllprodutviewQuery()
@@ -12,7 +13,10 @@ const ProductPage = () => {
     }]
     // console.log(prodData)
     return (
+        <>
         <div className='container'>
+        
+        
         <div className='my-4' style={{background : 'cornsilk', border: '2px solid black'}}>
             <table className='table table-striped text-center'>
                 <thead>
@@ -47,6 +51,7 @@ const ProductPage = () => {
             </table>
             
         </div>
+
         <div className="row">
             <div className="col-sm-6"> 
             </div>
@@ -57,6 +62,7 @@ const ProductPage = () => {
             </div>
         </div>
         </div>
+        </>
     )
 }
 
