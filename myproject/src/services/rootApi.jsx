@@ -41,6 +41,31 @@ export const rootApi = createApi({
           }            
           }
         }
+      }),
+      setSessionToken : builder.mutation({
+        query : (data)=>{
+          return {
+            url : "newshop/settokensession/",
+            method : "POST",
+            body : data,
+            headers :{
+              'Content-type':'application/json',
+            }
+          }
+        }
+        
+      }),
+      getSessionToken : builder.query({
+        query : ()=>{
+          return {
+            url : "newshop/gettokensession/",
+            method : "GET",
+            headers :{
+              'Content-type':'application/json',
+            }
+          }
+          
+        }
       })
 
   }),
@@ -48,4 +73,4 @@ export const rootApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const {useGetSingleProdQuery,useGetProdViewQuery,useGetAllprodutviewQuery,useGetLoginMutation } = rootApi
+export const {useGetSingleProdQuery,useGetProdViewQuery,useGetAllprodutviewQuery,useGetLoginMutation,useSetSessionTokenMutation,useGetSessionTokenQuery } = rootApi
