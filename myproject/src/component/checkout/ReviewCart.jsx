@@ -16,7 +16,7 @@ const ReviewCart = () => {
   return (
     <div>
        <div className="col my-4">
-                    <h2>Step1 - My Awesome cart checkout - Review your cart items</h2>
+                    <h2>AbhileshCart checkout - Review your cart items</h2>
                     <div className="mt-4">
                         <ul className="list-group" id='items'>
                             {

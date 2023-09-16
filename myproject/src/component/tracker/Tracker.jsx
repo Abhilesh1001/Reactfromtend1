@@ -49,7 +49,7 @@ const Tracker = () => {
   return (
     <div className='container'>
       <div className="col my-4">
-        <h2>Enter your order ID and Emateil Id to track your order</h2>
+        <h2>Enter your order ID and Email Id to track your order</h2>
         <form id="trackerForm" onSubmit={handleSubmit} className="row g-3">
           <div className="col-md-6">
             <label htmlFor="name" className="form-label">Order Id</label>
@@ -105,10 +105,6 @@ const Tracker = () => {
               )
             })
           }
-
-
-
-
         </div>
       </div>
     </div>
