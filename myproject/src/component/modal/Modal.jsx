@@ -36,7 +36,6 @@ const Modal = () => {
       })
       console.log(response.data)
     } catch (errors) {
-
       const email = localStorage.getItem('email')
       let data = {
         item_json: item_json
@@ -51,9 +50,6 @@ const Modal = () => {
       } catch (errors) {
         console.log('errorput', errors)
       }
-
-
-
     }
 
     let token = localStorage.setItem('token', null)

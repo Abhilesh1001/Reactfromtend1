@@ -17,6 +17,7 @@ const Checkout = () => {
     const [zip, setZip] = useState('')
     const [phoneno, setPhoneno] = useState('')
     const [eror,setError] =useState(false)
+    const userId = localStorage.getItem('UserId')
     const cart = useSelector((state)=>state.len.cart)
     const navigate = useNavigate()
 
@@ -27,7 +28,7 @@ const Checkout = () => {
         // console.log('ok')
         let data = {
             items_json: cart,
-            user : id,
+            user : userId,
             name: name,
             email: email,
             address1: address,
@@ -37,6 +38,7 @@ const Checkout = () => {
             zip: zip,
             phoneno: phoneno
         }
+        console.log(data)
         try {
             let token = localStorage.getItem('token')
             let response = await axios.post('http://127.0.0.1:8000/newshop/order/', data, {
@@ -59,6 +61,9 @@ const Checkout = () => {
             alert('Please login for purchse the item in your cart')
     
         }
+
+
+
         
         // console.log(data)
     }
