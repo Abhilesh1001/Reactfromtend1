@@ -37,19 +37,25 @@ const Login = () => {
                 }
             })
             console.log('getitem', response.data)
-            localStorage.setItem('cart', response.data.item_json)
-            dispatch(changeCart(response.data.item_json))
-            let cart = JSON.parse(response.data.item_json)
-            let sum = 0
-            let totalSum = 0
-            for (let item in cart) {
-                sum += cart[item][0]
-                totalSum += cart[item][0] * cart[item][2]
+            if(response.data.item_json!==undefined){
+                localStorage.setItem('cart', response.data.item_json)
+                dispatch(changeCart(response.data.item_json))
+                let cart = JSON.parse(response.data.item_json)
+                let sum = 0
+                let totalSum = 0
+                for (let item in cart) {
+                    sum += cart[item][0]
+                    totalSum += cart[item][0] * cart[item][2]
+                }
+                dispatch(changeLen(sum))
+                localStorage.setItem('len',sum)
+                localStorage.setItem('totalSum',totalSum)
+                dispatch(changeTotalSum(totalSum))
+            }else{
+                localStorage.setItem('cart',"{}")
+                dispatch(changeCart({}))
             }
-            dispatch(changeLen(sum))
-            localStorage.setItem('len',sum)
-            localStorage.setItem('totalSum',totalSum)
-            dispatch(changeTotalSum(totalSum))
+           
         } catch (errors) {
             console.log('loginError', errors)
         }

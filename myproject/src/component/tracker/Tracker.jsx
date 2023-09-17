@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Popover } from '@mui/material'
+import { Button, Popover, colors } from '@mui/material'
 import {
   Link
 } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { changeCart } from '../../feature/cart/CartSlicer'
+import { changeCart, changeLen } from '../../feature/cart/CartSlicer'
 import axios from 'axios'
 
 const cart1 = localStorage.getItem('cart')
@@ -15,8 +15,10 @@ const Tracker = () => {
   const [email, setEmail] = useState('')
   const [tracker, setTracker] = useState([])
   const [cartData, setCartData] = useState([])
-
+  const emailID = localStorage.getItem('email')
+  const [orderDetail,setOrderDetails] = useState('') 
   const handleSubmit = async (e) => {
+    
     e.preventDefault()
     // console.log(email, order_id)
     let data = {
@@ -39,6 +41,31 @@ const Tracker = () => {
     }
 
   }
+  useEffect( ()=>{
+    orderDetails()
+  },[])
+
+  const orderDetails = async ()=>{
+    let token = localStorage.getItem('token')
+    const emailData = {
+      email : emailID
+    }
+    console.log(token,emailData)
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+    try{
+      const response = await axios.post(`http://127.0.0.1:8000/newshop/orderDetail/`,emailData,{headers})
+      console.log(response.data)
+      
+      setOrderDetails(response.data)
+
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+
   // let data1 = []
   // for (const i in cartData) {
   //   console.log('cartDatai',cartData[i][0])
@@ -48,6 +75,8 @@ const Tracker = () => {
   // console.log('cartData',cartData)
   return (
     <div className='container'>
+      <div className="row">
+      <div className="col-sm-6">
       <div className="col my-4">
         <h2>Enter your order ID and Email Id to track your order</h2>
         <form id="trackerForm" onSubmit={handleSubmit} className="row g-3">
@@ -106,6 +135,33 @@ const Tracker = () => {
             })
           }
         </div>
+      </div>
+
+      </div>
+      <div className="col-sm-4 my-6 container">
+          <h2>Your Order Details</h2>
+          <table className="table table-success table-striped">
+            <thead>
+              <tr>
+                <th>Order No.</th>
+                <th>Email Id</th>
+              </tr>
+            </thead>
+            {
+              Object.keys(orderDetail).map((items,index)=>{
+                console.log(orderDetail[items].email)
+                return <tbody key={index}>
+                <tr>
+                  <td>{orderDetail[items].order_id}</td>
+                  <td>{orderDetail[items].email}</td>
+                </tr>
+              </tbody>
+              })
+            }
+            
+          </table>
+
+      </div>
       </div>
     </div>
   )

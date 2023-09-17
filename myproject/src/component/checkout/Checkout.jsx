@@ -5,7 +5,7 @@ import { changeCart, changeLen,changeTotalSum } from '../../feature/cart/CartSli
 import { changeUser } from '../../feature/login/LoginSlice'
 import axios from 'axios'
 import ReviewCart from './ReviewCart'
-const id = localStorage.getItem('UserId')
+// const id = localStorage.getItem('UserId')
 
 const Checkout = () => {
     const [name, setName] = useState('')
@@ -53,7 +53,10 @@ const Checkout = () => {
             localStorage.removeItem('cart')
             localStorage.removeItem('len')
             localStorage.removeItem('totalSum')
-            navigate('/shop/tracker')
+            dispatch(changeCart("{}"))
+            dispatch(changeTotalSum(0))
+
+            navigate('/')
 
         } catch (error) {
             console.log('error', error)
