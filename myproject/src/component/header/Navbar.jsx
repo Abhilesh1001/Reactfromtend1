@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Link
   } from "react-router-dom"
@@ -7,16 +7,24 @@ import './style.css'
 import Modal from '../modal/Modal';
 import { Button} from '@mui/material'
 import {useSelector,useDispatch} from 'react-redux'
-import {changeCart,changeLen,changeTotalSum} from '../../feature/cart/CartSlicer'
+import {changeCart,changeLen,changeTotalSum,changeQuery} from '../../feature/cart/CartSlicer'
+import {useNavigate} from 'react-router-dom'
 
 const Navbar = () => {
     const len = useSelector((state)=>state.len.len)
+    const [query,setQuery] = useState('')
     const dispatch = useDispatch()
-
+    const navigate = useNavigate('')
+    const handleSearch =(e)=>{
+      e.preventDefault()
+      localStorage.setItem('query',query)
+      dispatch(changeQuery(query))
+      navigate('/shop/search')
+    }
 
 
     const ClearCart =()=>{
-        console.log('ok')
+        // console.log('ok')
         localStorage.removeItem('cart')
         localStorage.removeItem('len')
         dispatch(changeCart(localStorage.getItem('cart')))
@@ -66,13 +74,17 @@ const Navbar = () => {
           </ul>
         </li>
       </ul>
-      <div className='d-flex flex-row'>
+
+      <form onSubmit={handleSearch} >
+      <div className='d-flex flex-row'>    
       <div className="fleaxitem mx-5">
             <SearchIcon color='primary' />
-            <input className='form-control' />
+            <input className='form-control' onChange={(e)=>setQuery(e.target.value)} />
           </div>
-          <Button variant='outlined'>Search</Button>
+          <Button type='submit' variant='outlined'>Search</Button>
           </div>
+          </form>
+
           <Modal />
           {len>0  && <button type='button' onClick={ClearCart} className='btn btn-primary mx-2'>Clear Cart</button>}
     </div>

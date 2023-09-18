@@ -1,0 +1,13 @@
+.box{
+ display: flex;
+ flex-wrap: wrap ;
+ 
+}
+
+.boxChild{
+    width: 18vw;
+    height: 25vw;
+    /* background-color: red; */
+    border: 2px hidden black;
+    cursor: pointer;
+}

@@ -7,6 +7,7 @@ const initialState = {
   price : '',
   cart : {},
   totalSum : 0,
+  query:''
 }
 
 export const cartSlice = createSlice({
@@ -30,10 +31,13 @@ export const cartSlice = createSlice({
     },
     changeTotalSum : (state,action)=>{
       state.totalSum=action.payload
+    },
+    changeQuery : (state,action)=>{
+      state.query=action.payload
     }
   },
 })
 // Action creators are generated for each case reducer function
-export const { changeLen,changeProductID,changeName,changePrice,changeCart,changeTotalSum } = cartSlice.actions
+export const { changeLen,changeProductID,changeName,changePrice,changeCart,changeTotalSum,changeQuery } = cartSlice.actions
 
 export default cartSlice.reducer

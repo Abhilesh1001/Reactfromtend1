@@ -16,6 +16,7 @@ import ResetPasswordWithUidToken from './excel/rest/ResetPasswordWithUidToken'
 import ProductPage from './excel/downloadExcel/ProductPage'
 import PDFprod from './excel/downloadPDF/PDFprod'
 import Loginsession from './component/sessiondango/Loginsession'
+import Search from './component/search/Search'
 
 function App() {
   
@@ -36,9 +37,9 @@ function App() {
         <Route exact path="/auth/resetnewpassword" element={<ResetNewPassword />} />
         <Route exact path="/auth/resetpassworduidtoken/:id/:token" element={<ResetPasswordWithUidToken />} />
         <Route exact path="/shop/productpage" element={<ProductPage />} />
-        <Route exact path="/shop/productpdf" element={<PDFprod />} />
+        <Route exact path="/shop/productpdf" element={<PDFprod />} /> 
         <Route exact path="/login/session" element={<Loginsession />} />
-
+        <Route exact path='shop/search' element ={<Search />} />
       </Routes>
       </BrowserRouter>
   )

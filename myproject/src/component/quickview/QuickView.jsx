@@ -10,7 +10,7 @@ const QuickView = () => {
     const name = useSelector((state)=>state.len.name)
     const price = useSelector((state)=>state.len.price)
     console.log(name,price)
-    const id = useSelector((state)=>state.len.productID)
+    const id = localStorage.getItem("ProductID")
     const { data, error, isLoading }= useGetSingleProdQuery(id)
     console.log(data?.image,isLoading)
 

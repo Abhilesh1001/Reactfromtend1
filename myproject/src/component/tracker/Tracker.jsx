@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 import { changeCart, changeLen } from '../../feature/cart/CartSlicer'
 import axios from 'axios'
 
-const cart1 = localStorage.getItem('cart')
 
 const Tracker = () => {
   const [order_id, setOrderId] = useState(0)
@@ -50,13 +49,13 @@ const Tracker = () => {
     const emailData = {
       email : emailID
     }
-    console.log(token,emailData)
+    // console.log(token,emailData)
     const headers = {
       Authorization: `Bearer ${token}`
     };
     try{
       const response = await axios.post(`http://127.0.0.1:8000/newshop/orderDetail/`,emailData,{headers})
-      console.log(response.data)
+      // console.log(response.data)
       
       setOrderDetails(response.data)
 
@@ -149,7 +148,7 @@ const Tracker = () => {
             </thead>
             {
               Object.keys(orderDetail).map((items,index)=>{
-                console.log(orderDetail[items].email)
+                // console.log(orderDetail[items].email)
                 return <tbody key={index}>
                 <tr>
                   <td>{orderDetail[items].order_id}</td>
