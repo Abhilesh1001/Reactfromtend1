@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Addtocart from '../addtocart/Addtocart'
 import {FacebookShareButton} from 'react-share'
 import FacebookPlugin from './FacebookPlugin'
+import Comment from '../../comment/Comment'
 
 
 const QuickView = () => {
@@ -41,7 +42,12 @@ const QuickView = () => {
                
                 <FacebookShareButton url='http://127.0.0.1:5173/shop/QuivkView'>Share button</FacebookShareButton><br />
                 <FacebookPlugin />
+                <div className='my-4'>
+
+                <Comment />
+                </div>
             </div> 
+
         </div>
     </div>
     }
