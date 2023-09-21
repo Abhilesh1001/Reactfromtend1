@@ -44,7 +44,7 @@ const QuickView = () => {
                 <FacebookPlugin />
                 <div className='my-4'>
 
-                <Comment />
+                <Comment productid={id}/>
                 </div>
             </div> 
 
