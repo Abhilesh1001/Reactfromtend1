@@ -13,7 +13,7 @@ const Contact = () => {
     const dispatch = useDispatch()
     const handleSubmit= async (e)=>{
         e.preventDefault()
-        console.log('ok')
+        // console.log('ok')
         let data ={
             name : name,
             email : email,
@@ -22,7 +22,7 @@ const Contact = () => {
         }
         setButtonthrttling(false)
         let token=localStorage.getItem('token')
-        console.log(data)
+        // console.log(data)
         let response = await axios.post('http://127.0.0.1:8000/newshop/newshonContact/',data,{
           headers :{
             Authorization : `Bearer ${token}`
@@ -33,7 +33,7 @@ const Contact = () => {
         }, 4000);
         
         let result = response.data
-        console.log(result)        
+        // console.log(result)        
     }
 
   return (

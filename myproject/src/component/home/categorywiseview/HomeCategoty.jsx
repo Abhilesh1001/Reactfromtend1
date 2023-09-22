@@ -42,7 +42,7 @@ const HomeCategoty = () => {
             setLoading(true)
             let data1 = response?.data
             setData(data1)
-            console.log(data1.Electrical)
+            // console.log(data1.Electrical)
 
         }catch(errors){
             console.log('prodcut not found')

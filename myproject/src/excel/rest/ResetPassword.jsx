@@ -9,7 +9,7 @@ const ResetPassword = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("ok")
+        // console.log("ok")
         const token = localStorage.getItem('token')
 
         const data = {
@@ -21,15 +21,15 @@ const ResetPassword = () => {
                 Authorization : `Bearer ${token}`
           }})
           const res = response.data.msg    
-          console.log('response',res)
+        //   console.log('response',res)
           setPassword('')
             setPassword2('') 
             setMessage(res.msg)
-            console.log(res)
+            // console.log(res)
         }
 
         catch(error){
-            console.log('error',error.response.data.errors)
+            // console.log('error',error.response.data.errors)
             setError(error.response.data.errors.non_field_errors)
         }
         

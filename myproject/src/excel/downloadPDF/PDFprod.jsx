@@ -26,7 +26,7 @@ const PDFprod = () => {
             <tbody>
                 {
                     data?.map((item,index) => {
-                        console.log()
+                        // console.log()
                         return (
                             <tr key={index}>
                                 <td>{index+1}</td>

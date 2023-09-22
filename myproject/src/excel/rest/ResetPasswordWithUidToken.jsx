@@ -9,10 +9,10 @@ const ResetPasswordWithUidToken = () => {
     const [message,setMessage] = useState('')
     const [error,setError] = useState('')
     const {id,token} = useParams()
-    console.log(id,token)
+    // console.log(id,token)
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("ok")
+        // console.log("ok")
        
         const data = {
             password: password,
@@ -21,11 +21,11 @@ const ResetPasswordWithUidToken = () => {
         try{
             const response = await axios.post(`http://127.0.0.1:8000/cus/send-reset-password/${id}/${token}/`,data)
           const res = response.data.msg  
-          console.log('response',res)
+        //   console.log('response',res)
           setPassword('')
             setPassword2('') 
             setMessage(res)
-            console.log(res)
+            // console.log(res)
         }
 
         catch(error){

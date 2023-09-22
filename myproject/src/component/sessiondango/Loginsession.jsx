@@ -13,25 +13,25 @@ const Loginsession = () => {
     // console.log(data)
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log('email', email, 'password', password);
+      // console.log('email', email, 'password', password);
       const data = {
           email: email,
           password: password
       };
       try {
           const res = await getLogin(data);
-          console.log(res.data.token.access);
+          // console.log(res.data.token.access);
           const token = {
               "token": res.data.token.access
           };
-          console.log('tokendata', token);
+          // console.log('tokendata', token);
           
           const setsession = await axios.post('http://127.0.0.1:8000/newshop/settokensession/', token);
-          console.log('setsession result', setsession.data);
+          // console.log('setsession result', setsession.data);
           setSession(setsession.data)
           
             const res1 = await axios.get('http://127.0.0.1:8000/newshop/gettokensession/'); 
-            console.log('result', res1.data);
+            // console.log('result', res1.data);
           
       } catch (error) {
           console.error('An error occurred:', error.response.data.token);

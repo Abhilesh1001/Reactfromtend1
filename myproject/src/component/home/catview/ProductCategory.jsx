@@ -8,7 +8,7 @@ const ProductCategory = ({ category, products }) => {
     <h2>{category}</h2>
     <div className='product container' style={{display:'flex'}}>
       {products.map((product) => {
-        console.log('category',product['category'])
+        // console.log('category',product['category'])
         
         return (
             (

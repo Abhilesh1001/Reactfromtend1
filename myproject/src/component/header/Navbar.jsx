@@ -29,7 +29,7 @@ const Navbar = () => {
     localStorage.removeItem('len')
     dispatch(changeCart(localStorage.getItem('cart')))
     dispatch(changeLen(localStorage.getItem('len')))
-    console.log(localStorage.getItem('len'))
+    // console.log(localStorage.getItem('len'))
     dispatch(changeTotalSum(localStorage.getItem('totalSum')))
   }
 

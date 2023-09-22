@@ -9,9 +9,9 @@ const Popup = () => {
   const [popoverContent, setPopoverContent] = useState('');
   const popoverRef = useRef(null);
   const navigate = useNavigate()
-   console.log(cartlen)
+  //  console.log(cartlen)
   useEffect(()=>{
-    console.log(cartlen)
+    // console.log(cartlen)
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
     const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
     return () => {
@@ -20,7 +20,7 @@ const Popup = () => {
     
   },[cartlen])
   useEffect(()=>{
-    console.log('cart',cartlen)
+    // console.log('cart',cartlen)
   },[cartlen])
   useEffect(() => {
     // Update the popover content when cart data changes

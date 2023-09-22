@@ -20,21 +20,21 @@ const Modal = () => {
   const navigate = useNavigate()
   const [errorlen, setErrorlen] = useState(0)
   const handleLogout = async () => {
-    console.log('ok')
+    // console.log('ok')
     let gettoken = localStorage.getItem('token')
     let data = {
       item_json: item_json,
       user: parseInt(userData)
     }
-    console.log(data, gettoken)
-    console.log('item_json', item_json, data)
+    // console.log(data, gettoken)
+    // console.log('item_json', item_json, data)
     try {
       const response = await axios.post('http://127.0.0.1:8000/newshop/cartCreate/', data, {
         headers: {
           Authorization: `Bearer ${gettoken}`
         }
       })
-      console.log(response.data)
+      // console.log(response.data)
     } catch (errors) {
       const email = localStorage.getItem('email')
       let data = {

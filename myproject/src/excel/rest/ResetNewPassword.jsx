@@ -7,7 +7,7 @@ const ResetNewPassword = () => {
     const [error,setError] = useState('')
     const handleSubmit = async (e)=>{
         e.preventDefault()
-        console.log('ok')
+        // console.log('ok')
         const data = {
             email : email 
         }
@@ -15,7 +15,7 @@ const ResetNewPassword = () => {
             const response = await axios.post('http://127.0.0.1:8000/cus/send-reset-password/',data)
         const res = response.data 
          setMessage(res.msg)   
-        console.log(res)
+        // console.log(res)
             
         }catch(error){
             setError(error.response.data.errors.non_field_errors)

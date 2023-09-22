@@ -5,7 +5,7 @@ import ProductList from './ProductList'
 const Prodview = () => {
     
     const {data,isLoading,error} = useGetProdViewQuery()
-    console.log(data,isLoading)
+    // console.log(data,isLoading)
   return (
       <div>
       <div>

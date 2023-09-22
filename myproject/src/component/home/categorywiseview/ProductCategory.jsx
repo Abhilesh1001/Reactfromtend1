@@ -10,8 +10,8 @@ import Addtocart from '../../addtocart/Addtocart'
 const ProductCategory = ({id,image,name, price, date,category,desc}) => {
     const dispatch = useDispatch()     
     const handleQuickView=(e)=>{
-      console.log('ok')
-      console.log(e.target.id)
+      // console.log('ok')
+      // console.log(e.target.id)
       dispatch(changeProductID(e.target.id))
     }
 

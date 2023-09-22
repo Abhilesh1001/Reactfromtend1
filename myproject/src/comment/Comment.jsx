@@ -48,9 +48,9 @@ const Comment = () => {
             for (let data in res) {
                 dataitem.push(res[data])
             }
-            console.log('data0', dataitem[0])
-            console.log('data1', dataitem[1])
-            console.log(dataitem[1][0])
+            // console.log('data0', dataitem[0])
+            // console.log('data1', dataitem[1])
+            // console.log(dataitem[1][0])
             setCommentData(dataitem[0])
             setReplyCommentData(dataitem[1][0])
 
@@ -78,7 +78,7 @@ const Comment = () => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/blogreply/', data)
             const res = response.data
-            console.log(res)
+            // console.log(res)
             setHandleReply(true)
 
         } catch (error) {

@@ -38,7 +38,7 @@ const Checkout = () => {
             zip: zip,
             phoneno: phoneno
         }
-        console.log(data)
+        // console.log(data)
         try {
             let token = localStorage.getItem('token')
             let response = await axios.post('http://127.0.0.1:8000/newshop/order/', data, {
@@ -48,7 +48,7 @@ const Checkout = () => {
             })
             let responseData = response.data
             // console.log('response', responseData)
-            console.log(responseData)
+            // console.log(responseData)
             alert(`your order hasbeen placed and your order Id is ${responseData.order_id} track your order bt tracker and email id`)
             localStorage.removeItem('cart')
             localStorage.removeItem('len')

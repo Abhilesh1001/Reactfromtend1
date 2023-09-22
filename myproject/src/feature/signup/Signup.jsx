@@ -31,7 +31,7 @@ const Signup = () => {
     dispatch(changePassword(inputpassword))
     dispatch(changePassword2(inputpassword2))
     dispatch(changeCheckbox(inputtc))
-    console.log(name)
+    // console.log(name)
     let data1 = {
         name : inputvalue,
         email : inputemail,
@@ -39,11 +39,11 @@ const Signup = () => {
         password2 : inputpassword2,
         tc : inputtc,
     }
-    console.log(data1)
+    // console.log(data1)
     try {
       const response = await axios.post('http://127.0.0.1:8000/cus/authreg/', data1)  
       const data2 = response.data.msg
-      console.log(data2)
+      // console.log(data2)
       setInputval('')
       setInputEmail('')
       setInputpasswordl('')

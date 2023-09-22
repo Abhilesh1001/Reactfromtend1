@@ -18,7 +18,7 @@ const Cart = () => {
     
         
   }, [cart]);
-  console.log(cartItem)
+  // console.log(cartItem)
   useEffect(()=>{
  
         

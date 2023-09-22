@@ -7,7 +7,7 @@ import {useNavigate} from 'react-router-dom'
 const Search = () => {
     const queryName = useSelector((state) => state.len.query)
     const [data, setData] = useState('')
-    console.log('qname', queryName)
+    // console.log('qname', queryName)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -18,10 +18,10 @@ const Search = () => {
         const data = {
             "search": queryName
         }
-        console.log(data)
+        // console.log(data)
         try {
             const response = await axios.post('http://127.0.0.1:8000/newshop/searchItem/', data)
-            console.log('res', response.data)
+            // console.log('res', response.data)
             setData(response.data)
         } catch (error) {
             console.log(error)
@@ -44,7 +44,7 @@ const Search = () => {
                 
                         {
                            Object.keys(data).map((item,index)=>{
-                            console.log(data[item])
+                            // console.log(data[item])
                             const Image = data[item].image
                             return <div key={index} className="boxChild mx-1 my-2">
                                 <img src={`http://127.0.0.1:8000/${Image}`} onClick={handdleQuickView} id={data[item].product_id} style={{width:'80%',height:'60%'}} />

@@ -60,7 +60,7 @@ const handlelocaldis =(sum,totalSum,cart)=>{
       }
       let obj = Object.keys(cart)
       let totalSum = 0
-      console.log(totalSum)
+      // console.log(totalSum)
         for(let item in cart){
           sum +=cart[item][0] 
           totalSum += cart[item][0]* cart[item][2]

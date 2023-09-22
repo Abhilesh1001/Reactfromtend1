@@ -11,7 +11,7 @@ const Product = ({id,image,name, price, date,category,desc}) => {
       
       const dispatch = useDispatch()     
       const handleQuickView=(e)=>{
-      console.log(e.target.id)
+      // console.log(e.target.id)
       dispatch(changeProductID(e.target.id))
       localStorage.setItem('ProductID',e.target.id)
       dispatch(changeName(name))

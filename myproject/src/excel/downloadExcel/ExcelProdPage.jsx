@@ -4,7 +4,7 @@ import* as XLSX from 'xlsx';
 
 
 const ExcelProdPage = ({finaldata}) => {
-    console.log('final dats',finaldata)
+    // console.log('final dats',finaldata)
     const fileType = 'xlsx'
     const exportTocsv=()=>{
         // console.log('ok')

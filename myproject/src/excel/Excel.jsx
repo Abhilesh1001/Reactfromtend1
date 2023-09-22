@@ -9,7 +9,7 @@ const Excel = ({finaldata}) => {
     
     const fileType= 'xlsx'
     const exportTocsv=()=>{
-        console.log('ok')
+        // console.log('ok')
        finaldata.map((item,index)=>{
         // console.log('item',item)
         item['json'] = XLSX.utils.json_to_sheet(item.data)

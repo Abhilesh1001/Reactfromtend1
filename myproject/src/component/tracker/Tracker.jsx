@@ -95,7 +95,7 @@ const Tracker = () => {
           <h2>Your order Status</h2>
           {
             Object.keys(tracker).map((items) => {
-              console.log(tracker[items].update_id)
+              // console.log(tracker[items].update_id)
               return (
                 <div key={items}>
                   <div className="col my-4">

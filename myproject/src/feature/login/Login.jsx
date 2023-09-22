@@ -29,7 +29,7 @@ const Login = () => {
         }
         Profile()
         let token = localStorage.getItem('token')
-        console.log(token, email)
+        // console.log(token, email)
         try {
             let response = await axios.get(`http://127.0.0.1:8000/newshop/cartGet/${email}`, {
                 headers: {
@@ -79,7 +79,7 @@ const Login = () => {
                 }
             })
             let res = response.data
-            console.log(res)
+            // console.log(res)
             dispatch(changeUser(res.name))
             localStorage.setItem('UserName', res.name)
             localStorage.setItem('UserId', res.id)

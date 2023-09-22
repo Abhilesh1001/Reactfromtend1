@@ -8,7 +8,7 @@ export const rootApi = createApi({
   endpoints: (builder) => ({
     getSingleProd: builder.query({
       query: (id) =>{
-        console.log(id)
+        // console.log(id)
         return {
             url : `newshop/singelprodview/${id}`,
             method : 'GET'

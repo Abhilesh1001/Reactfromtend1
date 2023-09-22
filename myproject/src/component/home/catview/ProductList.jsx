@@ -2,7 +2,7 @@ import React from 'react'
 import ProductCategory from './ProductCategory'
 
 const ProductList = ({data}) => {
-    console.log('data',data)
+    // console.log('data',data)
   return (
     <div>
       {Object?.keys(data)?.map((category) => (
