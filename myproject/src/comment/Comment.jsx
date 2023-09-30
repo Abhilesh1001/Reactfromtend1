@@ -122,17 +122,15 @@ const Comment = () => {
                                             {replyCommentData[commentData[item].sno] !== undefined && <div>
                                                 {
                                                     Object.keys(replyCommentData[commentData[item].sno]).map((items, indexs) => {
-                                                        // console.log(commentData[item].sno,replyCommentData[commentData[item].sno][items])
+                                                        console.log(commentData[item].sno,replyCommentData[commentData[item].sno][items].user)
                                                         return <div key={indexs}>
                                                             <div className="row">
                                                             <div className="col-sm-2 my-2">
                                                                 <img src={Image} style={{ width: '100%',borderRadius :'20px',border:'2px solid black', maxHeight:'10vh',maxWidth:'10vh'}} />
                                                             </div>
-
                                                             <div className="col-sm-10">
                                                                 {commentData[item].sno && <div>
-
-                                                                    <div>{replyCommentData[commentData[item].sno][items].user.charAt(0).toUpperCase()+commentData[item].user.slice(1)}</div>
+                                                                    <div>{replyCommentData[commentData[item].sno][items].user.charAt(0).toUpperCase() + replyCommentData[commentData[item].sno][items].user.slice(1)}</div>
                                                                     <div>{replyCommentData[commentData[item].sno][items].comment}</div>
                                                                     <div>{replyCommentData[commentData[item].sno][items].time}</div>
 
