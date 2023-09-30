@@ -5,6 +5,7 @@ import {
   Link
 } from "react-router-dom"
 import Addtocart from '../../addtocart/Addtocart'
+import './style.css'
 
 
 const ProductCategory = ({id,image,name, price, date,category,desc}) => {

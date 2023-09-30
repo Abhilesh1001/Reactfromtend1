@@ -7,14 +7,16 @@ import './style.css'
 import Modal from '../modal/Modal';
 import { Button } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeCart, changeLen, changeTotalSum, changeQuery } from '../../feature/cart/CartSlicer'
+import { changeCart, changeLen, changeTotalSum, changeQuery, changeNavCollaspe } from '../../feature/cart/CartSlicer'
 import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const len = useSelector((state) => state.len.len)
+  const navcollpaspe = useSelector((state)=>state.len.navcollpaspe)
   const [query, setQuery] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate('')
+  const [margin,setMargin] = useState(53)
   const handleSearch = (e) => {
     e.preventDefault()
     localStorage.setItem('query', query)
@@ -32,13 +34,26 @@ const Navbar = () => {
     // console.log(localStorage.getItem('len'))
     dispatch(changeTotalSum(localStorage.getItem('totalSum')))
   }
+  console.log(navcollpaspe)
+  const handleClick =()=>{
+    console.log('ok')
+    if(navcollpaspe===false){
+      dispatch(changeNavCollaspe(true))
+      setMargin(400)
+    }else{
+      dispatch(changeNavCollaspe(false))
+      setMargin(53)
+    }
+  }
+  console.log(margin)
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      {/* style={{position:'fixed',zIndex:1,width:'100%',marginTop:-53}} */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark"style={{position:'fixed',zIndex:1,width:'100%',marginTop:-`${margin}`}} >
         <div className="container-fluid">
           <Link className="navbar-brand" to={"/"}>AbhileshCart</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={handleClick}>
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">

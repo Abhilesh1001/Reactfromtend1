@@ -7,7 +7,8 @@ const initialState = {
   price : '',
   cart : {},
   totalSum : 0,
-  query:''
+  query:'',
+  navcollpaspe :false
 }
 
 export const cartSlice = createSlice({
@@ -34,10 +35,13 @@ export const cartSlice = createSlice({
     },
     changeQuery : (state,action)=>{
       state.query=action.payload
+    },
+    changeNavCollaspe : (state,action)=>{
+      state.navcollpaspe=action.payload
     }
   },
 })
 // Action creators are generated for each case reducer function
-export const { changeLen,changeProductID,changeName,changePrice,changeCart,changeTotalSum,changeQuery } = cartSlice.actions
+export const { changeLen,changeProductID,changeName,changePrice,changeCart,changeTotalSum,changeQuery,changeNavCollaspe } = cartSlice.actions
 
 export default cartSlice.reducer

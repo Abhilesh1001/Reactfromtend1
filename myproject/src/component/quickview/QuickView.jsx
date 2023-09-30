@@ -5,6 +5,7 @@ import Addtocart from '../addtocart/Addtocart'
 import {FacebookShareButton} from 'react-share'
 import FacebookPlugin from './FacebookPlugin'
 import Comment from '../../comment/Comment'
+import './quick.css'
 
 
 const QuickView = () => {
@@ -24,18 +25,19 @@ const QuickView = () => {
       {!isLoading &&
         <div className="container">
         <div className="row">
-            <div className="col-md-4">
-                <div className="row my-4">
+            <div className="col-md-4 posFixed">
+              <div   style={{position:'fixed', backgroundColor:'white', width:'400px', height:'400px'}}>
+                <div className="row my-4" >
                     <img src={`http://127.0.0.1:8000${data?.image}`} style={{width:'300px',height:'300px'}} />
-                    
                 </div>
                 <span >
                     <button className="btn btn-primary mx-2">Buy Now</button>
                     <Addtocart id={`pr${id}`} name={name} price={price} />
                 </span>
+                </div>
+                
             </div>
-            <div className="col-md-8">
-    
+            <div className="col-md-8 posChange">  
                 <h1>{data?.product_name}</h1>
                 <p><b>Rs.{data?.price}</b></p>
                 <p>{data?.desc}</p>
@@ -46,6 +48,7 @@ const QuickView = () => {
 
                 <Comment productid={id}/>
                 </div>
+
             </div> 
 
         </div>

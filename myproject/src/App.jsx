@@ -17,15 +17,21 @@ import ProductPage from './excel/downloadExcel/ProductPage'
 import PDFprod from './excel/downloadPDF/PDFprod'
 import Loginsession from './component/sessiondango/Loginsession'
 import Search from './component/search/Search'
+import { useSelector, useDispatch } from 'react-redux'
 
 function App() {
-  
+  const navCollaspe = useSelector((state)=>state.len.navcollpaspe)
+  console.log('nav',navCollaspe)
+
   return (
 
-      <BrowserRouter>
+    <BrowserRouter>
+      
       <Header />
-      <Routes>
 
+      {/* style={{marginTop:'48px'}} /400px */}
+      <div style={{marginTop:`${navCollaspe?'400px':'48px'}`}}  >
+      <Routes>
         <Route exact path='/'  element={<Home />} />
         <Route exact path='/shop/about' element={<Aboutus/>} />
         <Route exact path='/shop/tracker' element={<Tracker />} />
@@ -41,7 +47,9 @@ function App() {
         <Route exact path="/login/session" element={<Loginsession />} />
         <Route exact path='shop/search' element ={<Search />} />
       </Routes>
+      </div>
       </BrowserRouter>
+      
   )
 }
 

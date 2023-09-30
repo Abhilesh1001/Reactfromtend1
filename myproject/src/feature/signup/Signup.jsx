@@ -7,12 +7,6 @@ import {useNavigate} from 'react-router'
 
 
 const Signup = () => {
-
-  const name = useSelector((state)=>state.sign.name)
-  const email = useSelector((state)=>state.sign.email)
-  const password = useSelector((state)=>state.sign.password)
-  const password2 = useSelector((state)=>state.sign.password2)
-  const tc= useSelector((state)=>state.sign.tc)
   const [inputvalue,setInputval] = useState('')
   const [inputemail,setInputEmail] = useState('')
   const [inputpassword,setInputpasswordl] = useState('')

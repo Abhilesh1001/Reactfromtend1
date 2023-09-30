@@ -4,11 +4,14 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Product from './Product';
 import HomeCategoty from './categorywiseview/HomeCategoty';
+import { useSelector } from 'react-redux'
+
 
 import axios from 'axios'
 // import Carousel from './Carousel'
 
 const Home = () => {
+  const navCollaspe = useSelector((state)=>state.len.navcollpaspe)
 
     const responsive = {
         superLargeDesktop: {
@@ -35,7 +38,9 @@ const Home = () => {
     const [data,setData] =useState()
     useEffect(()=>{
         product()
-    },[])
+       
+        
+    },[navCollaspe])
     
     const product =  async () =>{
 
@@ -59,6 +64,7 @@ const Home = () => {
 
     return (
         <div className='container '>
+         
         <Carousel responsive={responsive}>
         {loading && productData}
         </Carousel>

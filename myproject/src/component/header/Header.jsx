@@ -27,7 +27,7 @@ const Header = () => {
 
 
   return (
-    <div className='headerarea'>
+    <div className='headerarea' >
       <Navbar />
     </div>
   )

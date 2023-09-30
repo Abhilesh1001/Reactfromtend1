@@ -5,6 +5,7 @@ import { changePassword, changeEmail, changeUser } from './LoginSlice'
 import { changeLen, changeCart, changeTotalSum } from '../../feature/cart/CartSlicer'
 import axios from 'axios'
 import {useNavigate} from 'react-router'
+import './style.css'
 
 const Login = () => {
     const email = useSelector((state) => state.login.email)
@@ -97,7 +98,7 @@ const Login = () => {
     }
     
     return (
-        <>
+        <div style={{zIndex:1050}}>
            {
             loginpage && <div> {/* Login modal<!-- Button trigger modal --> */}
             <Button type="button" color='primary' className="btn btn-primary mx-2" variant="contained" data-bs-toggle="modal" data-bs-target="#login">
@@ -126,7 +127,7 @@ const Login = () => {
                 </div>
             </div></div>
            }
-        </>
+        </div>
     )
 }
 
