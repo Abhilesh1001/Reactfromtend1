@@ -15,8 +15,6 @@ const Cart = () => {
     if (cart && typeof cart === 'string') {
       setCartItem(JSON.parse(cart));
     }
-    
-        
   }, [cart]);
   // console.log(cartItem)
   useEffect(()=>{

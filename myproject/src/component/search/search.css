@@ -10,4 +10,6 @@
     /* background-color: red; */
     border: 2px hidden black;
     cursor: pointer;
+    min-width: 250px;
+    min-height: 250px;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Image from '../assets/2.jpg'
+import {useSelector} from 'react-redux'
 
 const Comment = () => {
     const [comment, setComment] = useState('')
@@ -8,6 +9,7 @@ const Comment = () => {
     const [replyData, setReplyData] = useState('')
     const [replyCommentData, setReplyCommentData] = useState('')
     // console.log('comment', commentData)
+    const user = useSelector((state)=>state.login.user)
     const id = localStorage.getItem("ProductID")
     const [handle, setHandle] = useState(false)
     const [handleReply,setHandleReply] = useState(false)
@@ -102,7 +104,7 @@ const Comment = () => {
             <div className="container">
                 <form onSubmit={handleCommentSubmit}>
                     <input type="text" className='form-control my-2' value={comment} onChange={(e) => setComment(e.target.value)} />
-                    <button type='submit' className="btn btn-primary my-2" >Submit</button>
+                    {(user!==null && user!=="") && <button type='submit' className="btn btn-primary my-2" >Submit</button>}
                 </form >
                 <div className="container">
 
@@ -133,7 +135,6 @@ const Comment = () => {
                                                                     <div>{replyCommentData[commentData[item].sno][items].user.charAt(0).toUpperCase() + replyCommentData[commentData[item].sno][items].user.slice(1)}</div>
                                                                     <div>{replyCommentData[commentData[item].sno][items].comment}</div>
                                                                     <div>{replyCommentData[commentData[item].sno][items].time}</div>
-
                                                                 </div>}
                                                             </div>
 
@@ -145,9 +146,9 @@ const Comment = () => {
                                             </div>}
                                        
                                         <p>
-                                            <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target={`#collapseExample${index}`} aria-expanded="false" aria-controls="collapseExample">
+                                            {(user!==null && user!=="") && <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target={`#collapseExample${index}`} aria-expanded="false" aria-controls="collapseExample">
                                                 Reply
-                                            </button>
+                                            </button>}
                                         </p>
                                         <div className="collapse" id={`collapseExample${index}`}>
                                             <form onSubmit={handleReplySubmit}>

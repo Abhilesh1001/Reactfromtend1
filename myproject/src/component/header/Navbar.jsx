@@ -23,7 +23,7 @@ const Navbar = () => {
     dispatch(changeQuery(query))
     navigate('/shop/search')
   }
-
+ 
 
   const ClearCart = () => {
     // console.log('ok')
@@ -45,7 +45,6 @@ const Navbar = () => {
       setMargin(53)
     }
   }
-  console.log(margin)
 
   return (
     <div>
@@ -96,7 +95,7 @@ const Navbar = () => {
                   <SearchIcon color='primary' />
                   <input className='form-control' onChange={(e) => setQuery(e.target.value)} />
                 </div>
-                <Button type='submit' variant='outlined'>Search</Button>
+                <Button type='submit' variant='contained' >Search</Button>
               </div>
             </form>
 
