@@ -5,8 +5,6 @@ import 'react-multi-carousel/lib/styles.css';
 import Product from './Product';
 import HomeCategoty from './categorywiseview/HomeCategoty';
 import { useSelector } from 'react-redux'
-
-
 import axios from 'axios'
 // import Carousel from './Carousel'
 
@@ -33,14 +31,13 @@ const Home = () => {
         }
       };
 
-
     const [loading,setLoading] = useState(false)
     const [data,setData] =useState()
     useEffect(()=>{
         product()
        
         
-    },[navCollaspe])
+    },[])
     
     const product =  async () =>{
 

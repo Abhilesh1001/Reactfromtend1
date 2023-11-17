@@ -4,7 +4,7 @@ import { changeLen,changeCart,changeTotalSum} from '../../feature/cart/CartSlice
 
 const Addtocart = ({id,name,price}) => {
 
-  if(localStorage.getItem('cart')===null){
+  if(localStorage.getItem('cart')===null){  
     var cart ={}
     }
    else{
@@ -21,10 +21,11 @@ const handlelocaldis =(sum,totalSum,cart)=>{
 }
     const dispatch = useDispatch()
     const len = useSelector((state)=>state.len.len)
+
+
       const handleClick=(e)=>{
         let qty = 1
         var idstr = e.target.id.toString()
-
         if (cart[idstr]!=undefined){
           qty = parseInt(cart[idstr][0]) + 1
         }else{
@@ -81,7 +82,6 @@ const handlelocaldis =(sum,totalSum,cart)=>{
     
   return (
     <>
-      
       {cart[id]!==undefined && cart[id][0] || 0 ?<span><div id={id} className="btn btn-primary car mx-2" onClick={handleClick} >+</div><span>{cart[id][0]}</span><div id={id} className="btn btn-primary cart mx-2" onClick={handleRemove}>-</div></span>:<div className="btn btn-primary cart" id={id}  onClick={handleClick} >Add to cart</div>}
       </>
     

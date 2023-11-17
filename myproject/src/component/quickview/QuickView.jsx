@@ -15,10 +15,6 @@ const QuickView = () => {
     const id = localStorage.getItem("ProductID")
     const { data, error, isLoading }= useGetSingleProdQuery(id)
     // console.log(data?.image,isLoading)
-
-
-    
-
     // {data?.product_name}
   return (
     <div>

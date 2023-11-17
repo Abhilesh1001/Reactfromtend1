@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Image from '../assets/2.jpg'
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const Comment = () => {
     const [comment, setComment] = useState('')
@@ -9,10 +9,10 @@ const Comment = () => {
     const [replyData, setReplyData] = useState('')
     const [replyCommentData, setReplyCommentData] = useState('')
     // console.log('comment', commentData)
-    const user = useSelector((state)=>state.login.user)
+    const user = useSelector((state) => state.login.user)
     const id = localStorage.getItem("ProductID")
     const [handle, setHandle] = useState(false)
-    const [handleReply,setHandleReply] = useState(false)
+    const [handleReply, setHandleReply] = useState(false)
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault()
@@ -39,7 +39,7 @@ const Comment = () => {
 
     useEffect(() => {
         blogcomment()
-    }, [handle,handleReply])
+    }, [handle, handleReply])
 
     const blogcomment = async () => {
         try {
@@ -104,7 +104,7 @@ const Comment = () => {
             <div className="container">
                 <form onSubmit={handleCommentSubmit}>
                     <input type="text" className='form-control my-2' value={comment} onChange={(e) => setComment(e.target.value)} />
-                    {(user!==null && user!=="") && <button type='submit' className="btn btn-primary my-2" >Submit</button>}
+                    {(user !== null && user !== "") && <button type='submit' className="btn btn-primary my-2" >Submit</button>}
                 </form >
                 <div className="container">
 
@@ -114,21 +114,21 @@ const Comment = () => {
                             // console.log('data11', replyCommentData[commentData[item].sno])
                             return <div key={index} className="row">
                                 <div className="col-sm-2 my-2">
-                                    <img src={Image} style={{ width: '75%',borderRadius :'20px',border:'2px solid black', maxHeight:'10vh' ,maxWidth:'10vh'}} />
+                                    <img src={Image} style={{ width: '75%', borderRadius: '20px', border: '2px solid black', maxHeight: '10vh', maxWidth: '10vh' }} />
                                 </div>
                                 <div className="col-sm-10">
-                                    <div style={{fontFamily:'times-roman'}}>{commentData[item].user.charAt(0).toUpperCase()+commentData[item].user.slice(1)}</div>
+                                    <div style={{ fontFamily: 'times-roman' }}>{commentData[item].user.charAt(0).toUpperCase() + commentData[item].user.slice(1)}</div>
                                     <div>{commentData[item].comment}</div>
                                     <div>{commentData[item].time}</div>
-                                    <div className="container"> 
-                                            {replyCommentData[commentData[item].sno] !== undefined && <div>
-                                                {
-                                                    Object.keys(replyCommentData[commentData[item].sno]).map((items, indexs) => {
-                                                        console.log(commentData[item].sno,replyCommentData[commentData[item].sno][items].user)
-                                                        return <div key={indexs}>
-                                                            <div className="row">
+                                    <div className="container">
+                                        {replyCommentData[commentData[item].sno] !== undefined && <div> 
+                                            {
+                                                Object.keys(replyCommentData[commentData[item].sno]).map((items, indexs) => {
+                                                    console.log(commentData[item].sno, replyCommentData[commentData[item].sno][items].user)
+                                                    return <div key={indexs}>
+                                                        <div className="row">
                                                             <div className="col-sm-2 my-2">
-                                                                <img src={Image} style={{ width: '100%',borderRadius :'20px',border:'2px solid black', maxHeight:'10vh',maxWidth:'10vh'}} />
+                                                                <img src={Image} style={{ width: '100%', borderRadius: '20px', border: '2px solid black', maxHeight: '10vh', maxWidth: '10vh' }} />
                                                             </div>
                                                             <div className="col-sm-10">
                                                                 {commentData[item].sno && <div>
@@ -137,16 +137,13 @@ const Comment = () => {
                                                                     <div>{replyCommentData[commentData[item].sno][items].time}</div>
                                                                 </div>}
                                                             </div>
-
-
                                                         </div>
-                                                        </div>
-                                                    })
-                                                }
-                                            </div>}
-                                       
+                                                    </div>
+                                                })
+                                            }
+                                        </div>}
                                         <p>
-                                            {(user!==null && user!=="") && <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target={`#collapseExample${index}`} aria-expanded="false" aria-controls="collapseExample">
+                                            {(user !== null && user !== "") && <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target={`#collapseExample${index}`} aria-expanded="false" aria-controls="collapseExample">
                                                 Reply
                                             </button>}
                                         </p>

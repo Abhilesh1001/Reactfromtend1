@@ -63,7 +63,7 @@ const HomeCategoty = () => {
                         data[category].map((item)=>{
                             return (
                                
-                                <Product key={item?.product_id} id={item.product_id} image={`http://127.0.0.1:8000${item.image}`} name={item.product_name} price={item.price} date={item.pub_data} category={item.category} desc={item.desc} />    
+                                <Product key={item?.product_id} id={item.product_id} image={`http://127.0.0.1:8000${item.image}`} name={item.product_name} price={item.price} date={item.pub_data} category={item.category} desc={item.desc} />     
                                 
                             )
                         })

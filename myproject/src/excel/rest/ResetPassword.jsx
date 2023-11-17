@@ -27,15 +27,10 @@ const ResetPassword = () => {
             setMessage(res.msg)
             // console.log(res)
         }
-
         catch(error){
             // console.log('error',error.response.data.errors)
             setError(error.response.data.errors.non_field_errors)
         }
-        
-
-
-
     }
 
 

@@ -31,8 +31,6 @@ const Product = ({id,image,name, price, date,category,desc}) => {
     <p className="card-text">{desc}</p>
   </div>
   <span><Addtocart id={`pr${id}`} name={name} price={price} /><Link className="btn btn-primary mx-2" to={"/shop/QuivkView"} id={id} onClick={handleQuickView}>Quick View</Link></span>
-  
-
   </div>
 </div>
 

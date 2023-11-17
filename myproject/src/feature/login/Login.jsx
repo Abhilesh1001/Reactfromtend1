@@ -31,7 +31,7 @@ const Login = () => {
         Profile()
         let token = localStorage.getItem('token')
         // console.log(token, email)
-        try {
+        try {   
             let response = await axios.get(`http://127.0.0.1:8000/newshop/cartGet/${email}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -60,10 +60,9 @@ const Login = () => {
         } catch (errors) {
             console.log('loginError', errors)
         }
-
-
-
     }
+
+
     useEffect(() => {
         let token = localStorage.getItem('token')
         if (token !== null) {
@@ -73,7 +72,6 @@ const Login = () => {
     const Profile = async () => {
         let token = localStorage.getItem('token')
         try {
-
             let response = await axios.get('http://127.0.0.1:8000/cus/authuserpro', {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -90,6 +88,8 @@ const Login = () => {
             localStorage.removeItem('UserName')
         }
     }
+
+
     const handleforgetpassword =(e)=>{
         e.preventDefault()
         setLoginpage(false)
