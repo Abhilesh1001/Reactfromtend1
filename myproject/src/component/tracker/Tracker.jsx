@@ -1,68 +1,61 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Popover, colors } from '@mui/material'
-import {
-  Link
-} from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { changeCart, changeLen } from '../../feature/cart/CartSlicer'
 import axios from 'axios'
 
 
 const Tracker = () => {
-  const [order_id, setOrderId] = useState(0)
-  const [email, setEmail] = useState('')
-  const [tracker, setTracker] = useState([])
-  const [cartData, setCartData] = useState([])
-  const emailID = localStorage.getItem('email')
-  const [orderDetail,setOrderDetails] = useState('') 
-  const handleSubmit = async (e) => {
-    
-    e.preventDefault()
-    // console.log(email, order_id)
-    let data = {
-      order_id: parseInt(order_id),
-      email: email,
-    }
-    let token = localStorage.getItem('token')
-    // console.log(token)
-    const headers = {
-      Authorization: `Bearer ${token}`
-    };
-    try {
-      let response = await axios.post('http://127.0.0.1:8000/newshop/OrderUpdate/', data, { headers })
-
-      // console.log(response.data)
-      setTracker(response.data.order_updates)
-      setCartData(JSON.parse(response.data.order[Object.keys(response.data.order)].items_json))
-    } catch (error) {
-      console.log(error)
-    }
-
-  }
-  useEffect( ()=>{
-    orderDetails()
-  },[])
-
-  const orderDetails = async ()=>{
-    let token = localStorage.getItem('token')
-    const emailData = {
-      email : emailID
-    }
-    // console.log(token,emailData)
-    const headers = {
-      Authorization: `Bearer ${token}`
-    };
-    try{
-      const response = await axios.post(`http://127.0.0.1:8000/newshop/orderDetail/`,emailData,{headers})
-      // console.log(response.data)
+    const [order_id, setOrderId] = useState(0)
+    const [email, setEmail] = useState('')
+    const [tracker, setTracker] = useState([])
+    const [cartData, setCartData] = useState([])
+    const emailID = localStorage.getItem('email')
+    const [orderDetail,setOrderDetails] = useState('') 
+    const handleSubmit = async (e) => {
       
-      setOrderDetails(response.data)
+      e.preventDefault()
+      // console.log(email, order_id)
+      let data = {
+        order_id: parseInt(order_id),
+        email: email,
+      }
+      let token = localStorage.getItem('token')
+      // console.log(token)
+      const headers = {
+        Authorization: `Bearer ${token}`
+      };
+      try {
+        let response = await axios.post('http://127.0.0.1:8000/newshop/OrderUpdate/', data, { headers })
 
-    }catch(error){
-      console.log(error)
+        // console.log(response.data)
+        setTracker(response.data.order_updates)
+        setCartData(JSON.parse(response.data.order[Object.keys(response.data.order)].items_json))
+      } catch (error) {
+        console.log(error)
+      }
+
     }
-  }
+    useEffect( ()=>{
+      orderDetails()
+    },[])
+
+    const orderDetails = async ()=>{
+      let token = localStorage.getItem('token')
+      const emailData = {
+        email : emailID
+      }
+      // console.log(token,emailData)
+      const headers = {
+        Authorization: `Bearer ${token}`
+      };
+      try{
+        const response = await axios.post(`http://127.0.0.1:8000/newshop/orderDetail/`,emailData,{headers})
+        // console.log(response.data)
+        
+        setOrderDetails(response.data)
+
+      }catch(error){
+        console.log(error)
+      }
+    }
 
 
   // let data1 = []

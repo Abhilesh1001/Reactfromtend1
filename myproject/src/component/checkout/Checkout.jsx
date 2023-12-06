@@ -5,6 +5,7 @@ import { changeCart, changeLen,changeTotalSum } from '../../feature/cart/CartSli
 import { changeUser } from '../../feature/login/LoginSlice'
 import axios from 'axios'
 import ReviewCart from './ReviewCart'
+import RazorPay from '../razorPay/RazorPay'
 // const id = localStorage.getItem('UserId')
 
 const Checkout = () => {
@@ -23,9 +24,10 @@ const Checkout = () => {
 
     const dispatch = useDispatch()
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        // console.log('ok')
+
+
+    const handleSubmit = async (payment_id,order_id,signature,totalSum) => {
+
         let data = {
             items_json: cart,
             user : userId,
@@ -36,7 +38,12 @@ const Checkout = () => {
             city: city,
             state: state,
             zip: zip,
-            phoneno: phoneno
+            phoneno: phoneno,
+            payment_id : payment_id,
+            order_pay_id :order_id,
+            signature : signature,
+            amount : totalSum
+
         }
         // console.log(data)
         try {
@@ -115,7 +122,7 @@ const Checkout = () => {
                             <input type="text" className="form-control" onChange={(e) => setPhoneno(e.target.value)} id="phone" name='phone' />
                         </div>
                         <div className="col-12">
-                            <button type="submit" className="btn btn-primary">Place Order</button>
+                            <div type="submit" className="btn btn-primary"><RazorPay handllesub ={handleSubmit} /></div>
                         </div>
                     </form>
                 </div>

@@ -16,6 +16,7 @@ import PDFprod from './excel/downloadPDF/PDFprod'
 import Loginsession from './component/sessiondango/Loginsession'
 import Search from './component/search/Search'
 import { useSelector, useDispatch } from 'react-redux'
+import RazorPay from './component/razorPay/RazorPay'
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/shop/productpdf" element={<PDFprod />} /> 
         <Route exact path="/login/session" element={<Loginsession />} />
         <Route exact path='shop/search' element ={<Search />} />
+        <Route exact path='/RazorPay' element ={<RazorPay />} />
       </Routes>
       </div>
       </BrowserRouter>
